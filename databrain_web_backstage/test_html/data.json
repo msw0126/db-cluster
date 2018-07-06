@@ -1,0 +1,22 @@
+{
+  "user": "root",
+  "schema": [
+    {
+      "sparkType": "int",
+      "field": "id"
+    },
+    {
+      "sparkType": "string",
+      "field": "password"
+    },
+    {
+      "sparkType": "timestamp",
+      "field": "last_login"
+    }
+  ],
+  "dbType": "mysql",
+  "password": "123456",
+  "url": "jdbc:mysql://127.0.0.1:3306/databrain",
+  "table": "auth_user",
+  "destPath": "/taoshu/mydata//11"
+}

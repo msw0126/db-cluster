@@ -1,0 +1,12 @@
+{
+    "percent_split": {
+        "input_path": "hdfs://node1:8020/system/new_file15.parquet",
+        "percent": 0.35,
+        "seed": 10,
+        "rule_sql": "_c0 = 31",
+        "order": 0,
+        "field": "_c3",
+        "output_path_a": "hdfs://node1:8020/system/data_split/percent_split/table_a",
+        "output_path_b": "hdfs://node1:8020/system/data_split/percent_split/table_b"
+    }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function transform_check(v, min, max, parse_method,label){
+        try{
+            v = parse_method(v);
+        }catch(error) {
+            return "can not transform to "+label
+        }
+        if(min!==undefined&&v<min){
+            return "should between "+min+" and "+max;
+        }
+        if(max!==undefined&&v>max){
+            return "should between "+min+" and "+max;
+        }
+        return null
+    }
+
+    function checkInt(v){
+        var v1 = parseInt(v);
+        var v2 = parseFloat(v);
+
+        if(v2>v1){
+            throw Error()
+        }
+    }
+
+    function check_value(value, vtype, multiple, check){
+        value = value.trim();
+        value = value.split(",");
+
+        if(value.length>0&&(!multiple)){
+            return "can not accept multiple value"
+        }
+
+        var min = check.min;
+        var max = check.max;
+        var decimal = check.decimal;
+        var max_num = check.max_num;
+        if(vtype==='double'&&decimal===undefined){
+            decimal = 3;
+        }
+
+        if(multiple&&value.length>max_num){
+            return "can only accept "+max_num+" values"
+        }
+
+        for(var i=0;i<value.length;i++){
+            var v = value[i].trim();
+            var trans_res;
+            if(vtype==='int'){
+                trans_res = transform_check(v, min, max, checkInt, 'int')
+                if(trans_res!==null) return trans_res;
+            }else if(vtype==='double'){
+                trans_res = transform_check(v, min, max, parseFloat, 'int')
+                if(trans_res!==null) return trans_res;
+
+                v = parseFloat(v);
+                var v1 = parseFloat(v.toFixed(decimal));
+                if(v1!==v){
+                    return "remain "+decimal;
+                }
+            }else{
+                return
+            }
+        }
+        return
+    }
+    var check = {
+        "min" : 0,
+        "max" : 1,
+        "decimal" : 5,
+        "max_num":2
+    };
+
+    console.log(check_value("0.001,1e-6","double",true,check))
+
+</script>
+</html>

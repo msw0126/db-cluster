@@ -1,0 +1,8 @@
+1.配置文件在tdir目录下
+2.percent_split指：按比例拆分
+  percent_random指：按比例加随机种子
+  percent_layered指：按比例加分层
+  percent_layered_random指：按比例加随机种子加分层
+  rule_split指：按规则拆分
+  sort_split指：排序后拆分
+3.其中"order"参数："1"代表升序，"0"代表降序。

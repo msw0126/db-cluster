@@ -1,0 +1,123 @@
+<html>
+<style>
+a{
+    TEXT-DECORATION:underline;
+    cursor:hand;
+    margin:10px
+}
+</style>
+<body>
+<a>db_table_list</a><a>db_data_mapping</a><a>db_data_import</a>
+<a>data_list</a>
+
+<br>
+<br>
+<br>
+<div id="functionexc"></div>
+<textarea id="show" rows="300" cols="270"></textarea>
+
+</body>
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+    var server = "http://192.168.1.106:8000/";
+    function request(url, data){
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data : data,
+            success: function(dt){
+                $("#show").text(JSON.stringify(dt,undefined,4));
+            }
+        })
+    }
+
+    // function login(){
+    //     url = server+"auth/login";
+    //     data = {
+    //         'user':'admin',
+    //         'password':'123456'
+    //     };
+    //     request(url,data)
+    // }
+
+    // function logout(){
+    //     url = server+"auth/logout";
+    //     data = {};
+    //     request(url,data)
+    // }
+
+    function db_table_list(){
+        url = server+"mydata/database/table_list";
+        data = {
+            'db_type':'mysql',
+            'ip':'192.168.1.108',
+            'port':'3306',
+            'db':'mysql',
+            'user':'root',
+            'password':'taoshu12345'
+        };
+        request(url,data)
+    }
+
+    function db_data_mapping(){
+        url = server+"mydata/database/data_mapping";
+        data = {
+            'db_type':'mysql',
+            'ip':'192.168.1.108',
+            'port':'3306',
+            'db':'databrain',
+            'user':'root',
+            'password':'tashu12345',
+            'table':'auth_user',
+            'n':'100'
+        };
+        request(url,data)
+    }
+
+    function db_data_import(){
+        url = server+"mydata/database/data_import";
+        data = {
+            'db_type':'mysql',
+            'ip':'127.0.0.1',
+            'port':'3306',
+            'db':'databrain',
+            'user':'root',
+            'password':'123456',
+            'table':'auth_user',
+            'data_name':'test_table_name8',
+            'fields':[
+                {
+                    "field": "id",
+                    "sparkType": "int"
+                },
+                {
+                    "field": "password",
+                    "sparkType": "string"
+                },
+                {
+                    "field": "last_login",
+                    "sparkType": "timestamp"
+                }
+            ]
+        };
+        request(url,data)
+    }
+
+    function data_list(){
+        url = server+"mydata/manage/data_list";
+        data = {
+            "page_size" : 2,
+            "page_num" : 3
+        };
+        request(url,data)
+    }
+
+    $(document).ready(function(){
+        $("a").each(function() {
+            var t = $(this);
+            var func = eval(t.text());
+            t.click(func);
+        })
+    });
+</script>
+</html>

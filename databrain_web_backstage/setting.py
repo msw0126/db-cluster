@@ -1,0 +1,15 @@
+DB_DATABRAIN = 'django.db.backends.mysql'
+DB_NAME = 'databrain'
+DB_USER = 'root'
+DB_PASSWORD = 'taoshu12345'
+DB_HOST = '192.168.1.108'
+DB_PORT = '3306'
+
+HDFS_MY_DATA_PATH = "/system/taoshu/mydata/"
+DEVELOP_MODE = True
+DEVELOP_ACCOUNT = 'admin'
+DEVELOP_PASSWD = '123456'
+
+MY_DATA_LOCAL_FILE_TMP_DIR = "F:\\usefull\\tmp"
+MY_DATA_LOCAL_FILE_EXPIRED_DAYS = 2
+MY_DATA_LOCAL_FILE_MAX_SIZE_IN_MB = 200
